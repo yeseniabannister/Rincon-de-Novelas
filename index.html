@@ -80,6 +80,47 @@ dialog::backdrop{background:#1f0712}
 .vixbig{background:#e85d04;color:#fff}
 .pguardar{background:transparent;color:#fff;border:4px solid #fff}
 .pguardar.on{background:#fff;color:var(--vino)}
+/* series */
+.sec{font-size:1.35rem;font-weight:900;color:var(--vino);margin:6px 0 12px}
+.seguir{margin:8px 0 18px}
+.segrow{display:flex;align-items:center;gap:14px;width:100%;min-height:110px;padding:10px;margin-bottom:12px;border-radius:22px;border:4px solid var(--turq);background:#e2f7f4;color:var(--tinta);text-align:left;box-shadow:0 5px 0 var(--turq)}
+.segimg{flex:none;width:150px;aspect-ratio:16/9;border-radius:12px;background:#222 center/cover}
+.segrow .w{font-size:1.3rem;font-weight:900;line-height:1.15;flex:1}
+.segrow .n{display:block;font-size:1rem;font-weight:800;margin-top:4px;color:#123}
+.segrow .go{display:inline-block;margin-top:8px;background:var(--turq);color:#fff;border-radius:14px;padding:6px 16px;font-size:1.05rem}
+.tag.caps{left:auto;right:10px;background:var(--vino);color:#fff}
+.tag.vixtag{background:#e85d04;border-color:#e85d04}
+.meta.prog{color:var(--turq);font-weight:900}
+.hero{aspect-ratio:16/9;max-height:52vh;width:100%;border-radius:22px;background:#222 center/cover;border:4px solid var(--vino)}
+.stitle{font-size:1.8rem;font-weight:900;color:var(--vino);margin:14px 0 4px;line-height:1.15}
+.syear{font-size:1.2rem;color:#3d1526}
+.sdesc{font-size:1.15rem;font-weight:800;margin:4px 0 8px}
+.snote{font-size:1rem;font-weight:800;color:#3d1526;margin:4px 0 12px}
+.snote a{color:var(--vino)}
+.sacts{display:flex;flex-direction:column;gap:14px;margin:12px 0 26px}
+.btn.big{min-height:80px;font-size:1.35rem;width:100%;flex:none}
+@media(min-width:900px){.stop{display:grid;grid-template-columns:minmax(0,46%) 1fr;gap:28px;align-items:start}.stop .stitle{margin-top:0}.sacts{margin-bottom:10px}.stop{margin-bottom:24px}}
+.eplist{display:flex;flex-direction:column;gap:12px}
+.eprow{display:flex;align-items:center;gap:14px;width:100%;min-height:96px;padding:10px 14px 10px 10px;border-radius:20px;border:3px solid #c9a2b4;background:#fff;color:var(--tinta);text-align:left}
+.eprow.here{border:4px solid var(--turq);background:#e2f7f4}
+.eprow.done{background:#f6f0f3}
+.epimg{flex:none;width:132px;aspect-ratio:16/9;border-radius:12px;background:#222 center/cover}
+.eptxt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.epl{font-size:1.3rem;font-weight:900;color:var(--vino)}
+.ept{font-size:.95rem;font-weight:800;color:#3d1526;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.epm{font-size:.9rem;font-weight:800;color:#5a3346}
+.epgo{flex:none;width:60px;height:60px;border-radius:50%;background:var(--rosa);color:#fff;display:grid;place-items:center;font-size:1.4rem}
+.badge{display:inline-block;font-size:.8rem;background:var(--turq);color:#fff;border-radius:10px;padding:2px 10px;vertical-align:middle}
+.badge.ok{background:#5a3346}
+.pages{margin-bottom:16px}
+.btn.sig{flex:1 1 100%!important;min-height:84px;font-size:1.45rem;background:var(--oro);color:var(--tinta);box-shadow:0 5px 0 #8a6500;flex-direction:column;gap:0}
+.sigsub{display:block;font-size:1rem;font-weight:800}
+.fin{flex:1 1 100%;font-size:1.25rem;font-weight:900;margin:0;text-align:center}
+.auto{background:#fff;color:var(--tinta);border-radius:18px;padding:14px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.auto p{flex:1 1 100%;margin:0;font-size:1.25rem;font-weight:900;text-align:center}
+.auto .btn{flex:1 1 200px}
+.auto .pguardar{color:var(--vino);border-color:var(--vino)}
+@media(max-width:640px){.epimg{width:100px}.segimg{width:110px}.eprow{gap:10px}.epgo{width:56px;height:56px}.stitle{font-size:1.6rem}}
 footer{font-size:.85rem;font-weight:800;color:#3d1526;text-align:center;padding:20px 16px 50px;max-width:820px;margin:auto}
 @media(max-width:640px){.bar{flex-wrap:wrap;justify-content:space-between}.bar h2{order:3;flex:1 0 100%;font-size:1.2rem;text-align:center}.navbtn{flex:1 1 0;padding:8px 10px}}
 </style>
@@ -102,53 +143,74 @@ footer{font-size:.85rem;font-weight:800;color:#3d1526;text-align:center;padding:
 </dialog>
 <footer>Los videos vienen de los canales oficiales en YouTube. “Ver en ViX” abre ViX, que es gratis con anuncios (algunos títulos piden ViX Premium). Todos los derechos son de sus dueños.</footer>
 <script src="data.js"></script>
+<script src="series.js"></script>
 <script>
-const data=window.SHOWS, app=document.getElementById("app"), $=s=>document.querySelector(s);
+const data=window.SHOWS, SERIES=window.SERIES||[], app=document.getElementById("app"), $=s=>document.querySelector(s);
 const DECNAME={"30s":"Años 30","40s":"Años 40","50s":"Años 50","60s":"Años 60","70s":"Años 70","80s":"Años 80","90s":"Años 90","00s":"Años 2000","10s":"Años 2010","20s":"Años 2020"};
 const isC=w=>w.tags.includes("cantinflas");
+const SER=Object.fromEntries(SERIES.map(s=>[s.key,s]));
+const SERVIX=new Set(SERIES.map(s=>s.vix).filter(Boolean));
 const CATS=[
- {k:"novelas",ic:"💃",w:"Novelas",cls:"t-nov",f:w=>w.cat==="novelas"},
- {k:"casos",ic:"🌹",w:"Rosa de Guadalupe y casos",cls:"t-cas",f:w=>w.cat==="casos"},
- {k:"comedia",ic:"😂",w:"Comedia",cls:"t-com",f:w=>w.cat==="comedia"&&!isC(w)},
+ {k:"novelas",ic:"💃",w:"Novelas",cls:"t-nov",f:w=>w.cat==="novelas",series:true},
+ {k:"casos",ic:"🌹",w:"Rosa de Guadalupe y casos",cls:"t-cas",f:w=>w.cat==="casos",series:true},
+ {k:"comedia",ic:"😂",w:"Comedia",cls:"t-com",f:w=>w.cat==="comedia"&&!isC(w),series:true},
  {k:"cantinflas",ic:"🎩",w:"Cantinflas",cls:"t-can",f:isC},
  {k:"cine",ic:"🎬",w:"Películas de Oro",cls:"t-cine",f:w=>w.cat==="cine"&&!isC(w)},
  {k:"musica",ic:"🎺",w:"Música",cls:"t-mus",f:w=>w.cat==="musica"},
  {k:"cocina",ic:"🍲",w:"Cocina",cls:"t-coc",f:w=>w.cat==="cocina"},
- {k:"favoritos",ic:"❤️",w:"Mis Favoritos",cls:"t-fav",f:w=>favs.has(w.id)},
+ {k:"favoritos",ic:"❤️",w:"Mis Favoritos",cls:"t-fav",f:w=>favs.has(w.id),series:true},
 ];
-let favs=new Set(JSON.parse(localStorage.getItem("rn-favs")||"[]"));
+const LS=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}};
+let favs=new Set(LS("rn-favs",[]));
 const saveFavs=()=>localStorage.setItem("rn-favs",JSON.stringify([...favs]));
+let prog=LS("rn-prog",{});   // {serie:{e:indiceCapitulo,p:indiceParte,t:fecha}}
+let seen=LS("rn-seen",{});   // {serie:[indices vistos]}
+const saveProg=()=>{localStorage.setItem("rn-prog",JSON.stringify(prog));localStorage.setItem("rn-seen",JSON.stringify(seen))};
 const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const norm=s=>(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
-const yr=w=>{const m=(w.year||"").match(/\d{4}/);return m?+m[0]:9999};
+const yr=w=>{const m=String(w.year||"").match(/\d{4}/);return m?+m[0]:9999};
 const yearTxt=w=>/^\d|–/.test(w.year||"")?w.year:"";
+const mins=sec=>Math.max(1,Math.round(sec/60))+" min";
+const thumb=id=>`https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+const serFilter=c=>c.k==="favoritos"?SERIES.filter(s=>favs.has("s:"+s.key)):SERIES.filter(s=>s.cat===c.k);
 let srch={q:"",dec:null}, rendered=null;
 
 function go(h){ if(location.hash!==h) location.hash=h; else route(); }
 function route(){
-  const h=location.hash.replace(/^#\/?/,""); const [view,arg]=h.split("/");
-  if(view!=="ver" && $("#dlg").open) closeDlg(true);
-  if(view!=="ver" && h===rendered && app.innerHTML) return;
-  if(view!=="ver") rendered=h;
+  const h=location.hash.replace(/^#\/?/,""); const [view,arg,a2,a3]=h.split("/");
+  const isPlay=view==="ver"||view==="cap";
+  if(!isPlay && $("#dlg").open) closeDlg(true);
+  if(!isPlay && h===rendered && app.innerHTML) return;
+  if(!isPlay) rendered=h;
   if(view==="cat"){const c=CATS.find(x=>x.k===arg); if(c) return showList(c);}
+  if(view==="serie" && SER[arg]) return showSerie(SER[arg]);
   if(view==="buscar") return showSearch();
-  if(view==="ver"){ if(!app.innerHTML){rendered="";showHome();} return openPlayer(decodeURIComponent(arg)); }
+  if(isPlay){ if(!app.innerHTML){rendered="";showHome();}
+    if(view==="cap") return openEpisode(arg,+a2||0,+a3||0);
+    return openPlayer(decodeURIComponent(arg)); }
   showHome();
 }
 function setBar(title){ $("#bar").hidden=!title; $("#bartitle").textContent=title||""; window.scrollTo(0,0); }
+function recent(){return Object.entries(prog).filter(([k])=>SER[k]&&SER[k].episodes.length).sort((a,b)=>b[1].t-a[1].t).slice(0,3)}
 function showHome(){
   setBar(null);
+  const rc=recent();
   app.innerHTML=`<div class="picado" aria-hidden="true">${"<span></span>".repeat(24)}</div>
   <header><h1>Rincón de Novelas</h1><p class="dedica">Para mi mamá, con todo mi cariño 🌹</p></header>
   <div class="talavera" aria-hidden="true"></div>
-  <div class="wrap"><p class="pregunta">¿Qué quiere ver hoy? Toque un botón:</p>
-  <div class="tiles">${CATS.map(c=>{const n=data.filter(c.f).length;
-    return `<button class="tile ${c.cls}" data-cat="${c.k}"><span class="ic">${c.ic}</span><span class="w">${c.w}<span class="n">${c.k==="favoritos"?(n?n+" guardados":"Aquí aparecen los que guarde"):n+" para ver"}</span></span></button>`}).join("")}
+  <div class="wrap">
+  ${rc.length?`<section class="seguir"><h2 class="sec">▶ Seguir viendo</h2>${rc.map(([k,p])=>{const s=SER[k],e=s.episodes[p.e];
+     return `<button class="segrow" data-seg="${k}"><span class="segimg" style="background-image:url('${thumb(e.parts[p.p]?.id||e.parts[0].id)}')"></span><span class="w">${esc(s.title)}<span class="n">${esc(e.label)}${e.parts.length>1?" · Parte "+(p.p+1)+" de "+e.parts.length:""}</span><span class="go">▶ Seguir</span></span></button>`}).join("")}</section>`:""}
+  <p class="pregunta">¿Qué quiere ver hoy? Toque un botón:</p>
+  <div class="tiles">${CATS.map(c=>{const n=data.filter(c.f).length, ns=c.series?serFilter(c).length:0;
+    const sub=c.k==="favoritos"?((n+ns)?(n+ns)+" guardados":"Aquí aparecen los que guarde"):(ns?ns+" series con capítulos":n+" para ver");
+    return `<button class="tile ${c.cls}" data-cat="${c.k}"><span class="ic">${c.ic}</span><span class="w">${c.w}<span class="n">${sub}</span></span></button>`}).join("")}
    <button class="tile t-sor" id="sorpresa"><span class="ic">🎲</span><span class="w">Sorpréndeme<span class="n">Un video al azar</span></span></button>
    <button class="tile t-bus" id="buscar"><span class="ic">🔎</span><span class="w">Buscar<span class="n">Por nombre o por década</span></span></button>
   </div></div>`;
   app.querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>go("#/cat/"+b.dataset.cat));
-  $("#sorpresa").onclick=()=>{const p=data.filter(w=>w.type==="youtube");go("#/ver/"+encodeURIComponent(p[Math.floor(Math.random()*p.length)].id))};
+  app.querySelectorAll("[data-seg]").forEach(b=>b.onclick=()=>{const p=prog[b.dataset.seg];go(`#/cap/${b.dataset.seg}/${p.e}/${p.p}`)});
+  $("#sorpresa").onclick=()=>{if(Math.random()<.5){const p=SERIES.filter(s=>s.episodes.length),s=p[Math.floor(Math.random()*p.length)];go(`#/cap/${s.key}/${Math.floor(Math.random()*s.episodes.length)}/0`)}else{const p=data.filter(w=>w.type==="youtube");go("#/ver/"+encodeURIComponent(p[Math.floor(Math.random()*p.length)].id))}};
   $("#buscar").onclick=()=>go("#/buscar");
 }
 function cardHTML(w){const on=favs.has(w.id);
@@ -156,47 +218,160 @@ function cardHTML(w){const on=favs.has(w.id);
   <div class="body"><div class="title">${esc(w.title)}</div><div class="meta">${esc(w.show)}${yearTxt(w)?" · "+esc(yearTxt(w)):""}${w.type==="youtube"&&w.duration?" · "+esc(w.duration):""}</div>
   <div class="acts"><button class="btn ver ${w.type==="vix"?"vix":""}" data-ver="${w.id}">▶ ${w.type==="vix"?"Ver en ViX":"Ver"}</button>
   <button class="btn guardar ${on?"on":""}" data-fav="${w.id}">${on?"❤ Guardado":"🤍 Guardar"}</button></div></div></article>`}
+function serieCard(s){const on=favs.has("s:"+s.key), n=s.episodes.length, p=prog[s.key];
+  const cover=s.cover||(data.find(w=>w.watchUrl===s.vix)||{}).thumb||"";
+  return `<article class="card serie"><div class="thumb" style="background-image:url('${cover}')"><span class="tag">${DECNAME[s.decade]||""}</span>${n?`<span class="tag caps">${n} ${s.cat==="casos"||s.key.startsWith("el-chavo")||s.key==="chapulin"?"episodios":"capítulos"}</span>`:`<span class="tag caps vixtag">En ViX</span>`}</div>
+  <div class="body"><div class="title">${esc(s.title)}</div><div class="meta">${s.year} · ${esc(s.desc)}</div>
+  ${p&&n?`<div class="meta prog">▶ Va en el ${esc(s.episodes[p.e].label)}</div>`:""}
+  <div class="acts"><button class="btn ver ${n?"":"vix"}" data-serie="${s.key}">${n?"📺 Ver capítulos":"▶ Ver en ViX"}</button>
+  <button class="btn guardar ${on?"on":""}" data-fav="s:${s.key}">${on?"❤ Guardado":"🤍 Guardar"}</button></div></div></article>`}
 function bindCards(root,rerender){
   root.querySelectorAll("[data-ver]").forEach(b=>b.onclick=()=>go("#/ver/"+encodeURIComponent(b.dataset.ver)));
+  root.querySelectorAll("[data-serie]").forEach(b=>b.onclick=()=>go("#/serie/"+b.dataset.serie));
   root.querySelectorAll("[data-fav]").forEach(b=>b.onclick=()=>{toggleFav(b.dataset.fav); if(rerender) rerender(); else {const on=favs.has(b.dataset.fav);b.classList.toggle("on",on);b.textContent=on?"❤ Guardado":"🤍 Guardar";}});
 }
 function showList(c){
   setBar(c.ic+" "+c.w);
-  const items=data.filter(c.f).sort((a,b)=>(a.type==="vix")-(b.type==="vix")||yr(a)-yr(b));
-  app.innerHTML=`<div class="wrap">${items.length?`<p class="cuenta">${items.length} para ver. Toque “Ver”.</p><div class="list">${items.map(cardHTML).join("")}</div>`:
-   `<p class="empty">Todavía no ha guardado nada.<br>Toque “🤍 Guardar” en cualquier programa y aparecerá aquí.</p>`}</div>`;
-  bindCards(app, c.k==="favoritos"?()=>showList(c):null);
+  const ss=c.series?serFilter(c).sort((a,b)=>(!a.episodes.length)-(!b.episodes.length)||a.year-b.year):[];
+  const items=data.filter(c.f).filter(w=>!(c.series&&w.type==="vix"&&SERVIX.has(w.watchUrl))).sort((a,b)=>(a.type==="vix")-(b.type==="vix")||yr(a)-yr(b));
+  let h="";
+  if(ss.length) h+=`<h2 class="sec">📺 Series completas por capítulo</h2><p class="cuenta">${ss.length} series. Toque “Ver capítulos” y empiece desde el Capítulo 1.</p><div class="list">${ss.map(serieCard).join("")}</div>`;
+  if(items.length) h+=(ss.length?`<h2 class="sec" style="margin-top:34px">🎞 ${c.k==="favoritos"?"Videos guardados":"Escenas y videos sueltos"}</h2>`:"")+`<p class="cuenta">${items.length} para ver. Toque “Ver”.</p><div class="list">${items.map(cardHTML).join("")}</div>`;
+  if(!h) h=`<p class="empty">Todavía no ha guardado nada.<br>Toque “🤍 Guardar” en cualquier programa y aparecerá aquí.</p>`;
+  app.innerHTML=`<div class="wrap">${h}</div>`;
+  bindCards(app, c.k==="favoritos"?()=>{rendered=null;showList(c)}:null);
+}
+const PAGE=50;
+function showSerie(s,page){
+  setBar("📺 "+s.title);
+  const eps=s.episodes, p=prog[s.key], vis=new Set(seen[s.key]||[]), on=favs.has("s:"+s.key);
+  const cover=s.cover||(data.find(w=>w.watchUrl===s.vix)||{}).thumb||"";
+  if(page==null) page=p?Math.floor(p.e/PAGE):0;
+  const pages=Math.ceil(eps.length/PAGE);
+  const vixBtn=s.vix?`<a class="btn vixbig big" href="${s.vix}" target="_blank" rel="noopener">▶ Ver en ViX${eps.length?" (serie completa)":""}</a>`:"";
+  app.innerHTML=`<div class="wrap serieP"><div class="stop">
+   <div class="hero" style="background-image:url('${cover}')"></div><div class="sinfo">
+   <h2 class="stitle">${esc(s.title)} <span class="syear">(${s.year})</span></h2>
+   <p class="sdesc">${esc(s.desc)}</p>
+   ${s.note?`<p class="snote">ℹ️ ${esc(s.note)}</p>`:""}
+   <div class="sacts">
+    ${eps.length&&p?`<button class="btn ver big" id="seguir">▶ Seguir viendo — ${esc(eps[p.e].label)}</button>`:""}
+    ${eps.length?`<button class="btn ${p?"guardar":"ver"} big" id="empezar">▶ Empezar desde el ${esc(eps[0].label.replace(/^Temporada \d+ · /,""))}</button>`:""}
+    ${vixBtn}
+    <button class="btn guardar big ${on?"on":""}" data-fav="s:${s.key}">${on?"❤ Guardado":"🤍 Guardar esta serie"}</button>
+   </div></div></div>
+   ${eps.length?`<h2 class="sec">📋 Lista de ${s.cat==="casos"||s.key==="el-chavo"||s.key==="chapulin"?"episodios":"capítulos"} (${eps.length})</h2>
+   ${pages>1?`<p class="cuenta">Elija un grupo:</p><div class="decs pages">${Array.from({length:pages},(_,i)=>`<button class="dec" data-page="${i}" aria-pressed="${i===page}">${eps[i*PAGE].n}–${eps[Math.min(eps.length,(i+1)*PAGE)-1].n}${eps[i*PAGE].season&&eps[i*PAGE].season!==(eps[Math.min(eps.length,(i+1)*PAGE)-1].season)?"":eps[i*PAGE].season?" (T"+eps[i*PAGE].season+")":""}</button>`).join("")}</div>`:""}
+   <div class="eplist">${eps.slice(page*PAGE,(page+1)*PAGE).map((e,j)=>{const i=page*PAGE+j, here=p&&p.e===i, done=vis.has(i);
+     const dur=e.parts.reduce((a,x)=>a+(x.d||0),0);
+     return `<button class="eprow ${here?"here":""} ${done?"done":""}" data-ep="${i}"><span class="epimg" style="background-image:url('${thumb(e.parts[0].id)}')"></span><span class="eptxt"><span class="epl">${esc(e.label)}${here?' <span class="badge">Aquí se quedó</span>':done?' <span class="badge ok">✓ Visto</span>':""}</span><span class="ept">${esc(e.title)}</span><span class="epm">${e.parts.length>1?e.parts.length+" partes · ":""}${mins(dur)}</span></span><span class="epgo">▶</span></button>`}).join("")}</div>`:""}
+   ${s.scenes&&s.scenes.length?`<h2 class="sec" style="margin-top:30px">🎬 Escenas y avances</h2><div class="eplist">${s.scenes.map((x,i)=>`<button class="eprow" data-scene="${i}"><span class="epimg" style="background-image:url('${thumb(x.id)}')"></span><span class="eptxt"><span class="ept" style="font-size:1.05rem;font-weight:900">${esc(x.t)}</span><span class="epm">${mins(x.d)}</span></span><span class="epgo">▶</span></button>`).join("")}</div>`:""}
+   <p class="snote" style="margin-top:24px">Fuente: ${esc(s.source)}${s.playlists.length?` · <a href="${s.playlists[0]}" target="_blank" rel="noopener">lista oficial en YouTube</a>`:""}</p>
+  </div>`;
+  if($("#seguir")) $("#seguir").onclick=()=>go(`#/cap/${s.key}/${p.e}/${p.p}`);
+  if($("#empezar")) $("#empezar").onclick=()=>go(`#/cap/${s.key}/0/0`);
+  app.querySelectorAll("[data-ep]").forEach(b=>b.onclick=()=>go(`#/cap/${s.key}/${b.dataset.ep}/0`));
+  app.querySelectorAll("[data-scene]").forEach(b=>b.onclick=()=>go(`#/cap/${s.key}/s/${b.dataset.scene}`));
+  app.querySelectorAll("[data-page]").forEach(b=>b.onclick=()=>{showSerie(s,+b.dataset.page);setTimeout(()=>$(".eplist").scrollIntoView({block:"start"}),0)});
+  bindCards(app,()=>showSerie(s,page));
 }
 function showSearch(){
   setBar("🔎 Buscar");
-  app.innerHTML=`<div class="wrap search"><label class="lbl" for="q">Escriba un nombre (por ejemplo: Thalía, Pedro Infante, Chavo):</label>
+  app.innerHTML=`<div class="wrap search"><label class="lbl" for="q">Escriba un nombre (por ejemplo: Thalía, Marimar, Chavo):</label>
    <input id="q" type="search" autocomplete="off" value="${esc(srch.q)}" placeholder="Escriba aquí…">
    <span class="lbl">O elija una década:</span><div class="decs">${Object.entries(DECNAME).map(([k,l])=>`<button class="dec" data-dec="${k}" aria-pressed="${srch.dec===k}">${l}</button>`).join("")}
    <button class="dec" data-dec="" aria-pressed="false">✕ Todas</button></div>
    <div id="res" style="margin-top:22px"></div></div>`;
-  const draw=()=>{const q=norm(srch.q).split(/\s+/).filter(Boolean);
-    let r=(!q.length&&!srch.dec)?[]:data.filter(w=>(!srch.dec||w.decade===srch.dec)&&q.every(t=>norm([w.title,w.show,w.year,w.note,w.tags.join(" ")].join(" ")).includes(t))).sort((a,b)=>yr(a)-yr(b));
-    $("#res").innerHTML=(!q.length&&!srch.dec)?"":r.length?`<p class="cuenta">Encontramos ${r.length}.</p><div class="list">${r.map(cardHTML).join("")}</div>`:`<p class="empty">No encontramos nada. Pruebe con otra palabra.</p>`;
+  const draw=()=>{const q=norm(srch.q).split(/\s+/).filter(Boolean), none=!q.length&&!srch.dec;
+    const ss=none?[]:SERIES.filter(s=>(!srch.dec||s.decade===srch.dec)&&q.every(t=>norm([s.title,s.year,s.desc,s.tags.join(" ")].join(" ")).includes(t))).sort((a,b)=>a.year-b.year);
+    let r=none?[]:data.filter(w=>(!srch.dec||w.decade===srch.dec)&&!(w.type==="vix"&&SERVIX.has(w.watchUrl))&&q.every(t=>norm([w.title,w.show,w.year,w.note,w.tags.join(" ")].join(" ")).includes(t))).sort((a,b)=>yr(a)-yr(b));
+    $("#res").innerHTML=none?"":(ss.length+r.length)?`<p class="cuenta">Encontramos ${ss.length+r.length}.</p>${ss.length?`<h2 class="sec">📺 Series</h2><div class="list">${ss.map(serieCard).join("")}</div>`:""}${r.length?`<h2 class="sec" style="margin-top:24px">🎞 Videos</h2><div class="list">${r.map(cardHTML).join("")}</div>`:""}`:`<p class="empty">No encontramos nada. Pruebe con otra palabra.</p>`;
     bindCards($("#res"))};
   $("#q").oninput=e=>{srch.q=e.target.value;draw()};
   app.querySelectorAll("[data-dec]").forEach(b=>b.onclick=()=>{srch.dec=b.dataset.dec||null;app.querySelectorAll("[data-dec]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.dec&&x.dataset.dec===srch.dec));draw()});
   draw();
 }
 function toggleFav(id){favs.has(id)?favs.delete(id):favs.add(id);saveFavs()}
-let cur=null;
+/* ---------- Reproductor ---------- */
+let cur=null, curEp=null, ytp=null, ytReady=null, autoT=null;
+function loadYT(){ if(ytReady) return ytReady;
+  ytReady=new Promise(res=>{ if(window.YT&&YT.Player) return res(true);
+    window.onYouTubeIframeAPIReady=()=>res(true);
+    const sc=document.createElement("script"); sc.src="https://www.youtube.com/iframe_api"; sc.onerror=()=>res(false); document.head.appendChild(sc);
+    setTimeout(()=>res(!!(window.YT&&YT.Player)),6000);});
+  return ytReady; }
+function plainIframe(id,title){$("#frame").innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&hl=es-419&cc_load_policy=0" title="${esc(title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`}
+function playVideo(id,title,onEnd){
+  const f=$("#frame"); f.style.backgroundImage=""; clearAuto();
+  if(ytp&&ytp.loadVideoById&&document.getElementById("ytp")){ ytp._onEnd=onEnd; ytp.loadVideoById(id); return; }
+  f.innerHTML=`<div id="ytp"></div>`;
+  loadYT().then(ok=>{ if(!document.getElementById("ytp")) return;
+    if(!ok){plainIframe(id,title);return}
+    ytp=new YT.Player("ytp",{host:"https://www.youtube-nocookie.com",videoId:id,width:"100%",height:"100%",
+      playerVars:{autoplay:1,rel:0,playsinline:1,modestbranding:1,hl:"es-419",cc_load_policy:0,iv_load_policy:3},
+      events:{onReady:e=>{try{e.target.playVideo()}catch(_){}} ,onStateChange:e=>{if(e.data===0&&ytp._onEnd) ytp._onEnd()},onError:()=>{}}});
+    ytp._onEnd=onEnd; });
+}
+function clearAuto(){ if(autoT){clearInterval(autoT);autoT=null} const a=$("#auto"); if(a) a.remove(); }
+function nextOf(s,ei,pi){ const e=s.episodes[ei]; if(pi+1<e.parts.length) return [ei,pi+1,"part"]; if(ei+1<s.episodes.length) return [ei+1,0,"ep"]; return null; }
+function openEpisode(key,ei,pi){ const s=SER[key]; if(!s||!s.episodes.length){go("#/");return}
+  cur=null;
+  const scene=location.hash.split("/")[3]==="s";
+  if(scene){ const x=s.scenes[+location.hash.split("/")[4]||0]; if(!x){go("#/serie/"+key);return}
+    curEp={key,scene:true};
+    playVideo(x.id,x.t,null);
+    $("#ptitle").textContent=x.t; $("#pmeta").textContent=s.title+" · Escena · "+mins(x.d);
+    $("#pacts").innerHTML=`<a class="btn yt" href="https://www.youtube.com/watch?v=${x.id}" target="_blank" rel="noopener">▶ Abrir en YouTube</a>`;
+    $("#psrc").textContent="Fuente: "+s.source; if(!$("#dlg").open) $("#dlg").showModal(); return; }
+  ei=Math.min(Math.max(0,ei),s.episodes.length-1); const e=s.episodes[ei]; pi=Math.min(Math.max(0,pi),e.parts.length-1); const part=e.parts[pi];
+  curEp={key,ei,pi};
+  prog[key]={e:ei,p:pi,t:Date.now()}; saveProg();
+  const nx=nextOf(s,ei,pi);
+  playVideo(part.id,part.t,()=>onEnded(key,ei,pi));
+  $("#ptitle").textContent=`${s.title} — ${e.label}`;
+  $("#pmeta").textContent=[e.parts.length>1?`Parte ${pi+1} de ${e.parts.length}`:null,part.t,mins(part.d)].filter(Boolean).join(" · ");
+  const nxLabel=!nx?null:nx[2]==="part"?`Siguiente parte (${nx[1]+1} de ${e.parts.length}) ▶`:`Siguiente capítulo ▶`;
+  const prev=pi>0?[ei,pi-1]:ei>0?[ei-1,0]:null;
+  $("#pacts").innerHTML=(nx?`<button class="btn sig" id="psig">${nxLabel}${nx[2]==="ep"?`<span class="sigsub">${esc(s.episodes[nx[0]].label)}</span>`:""}</button>`:`<p class="fin">🎉 ¡Este es el último ${s.cat==="casos"?"episodio":"capítulo"}!</p>`)+
+    (nx&&nx[2]==="part"&&ei+1<s.episodes.length?`<button class="btn yt" id="pnextep">Saltar al siguiente capítulo ⏭</button>`:"")+
+    (prev?`<button class="btn pguardar" id="pprev">◀ Anterior</button>`:"")+
+    `<button class="btn pguardar" id="plist">📋 Lista de capítulos</button>`+
+    `<a class="btn yt" href="https://www.youtube.com/watch?v=${part.id}" target="_blank" rel="noopener">▶ Abrir en YouTube</a>`+
+    (s.vix?`<a class="btn vixbig" href="${s.vix}" target="_blank" rel="noopener">▶ Ver en ViX</a>`:"");
+  const jump=(a,b)=>{history.replaceState(null,"",`#/cap/${key}/${a}/${b}`);openEpisode(key,a,b)};
+  if($("#psig")) $("#psig").onclick=()=>{markSeen(key,ei,nx);jump(nx[0],nx[1])};
+  if($("#pnextep")) $("#pnextep").onclick=()=>jump(ei+1,0);
+  if($("#pprev")) $("#pprev").onclick=()=>jump(prev[0],prev[1]);
+  $("#plist").onclick=()=>{ if(rendered==="serie/"+key) history.back(); else {history.replaceState(null,"","#/serie/"+key); route();} };
+  $("#psrc").textContent="Se pasa sola a la siguiente parte o capítulo. Si el video no carga, toque “Abrir en YouTube”. Fuente: "+s.source;
+  if(!$("#dlg").open) $("#dlg").showModal();
+}
+function markSeen(key,ei,nx){ if(nx&&nx[2]==="part") return; const a=new Set(seen[key]||[]); a.add(ei); seen[key]=[...a]; saveProg(); }
+function onEnded(key,ei,pi){ const s=SER[key], nx=nextOf(s,ei,pi);
+  if(!nx){ markSeen(key,ei,null); return; }
+  const go2=()=>{clearAuto();markSeen(key,ei,nx);history.replaceState(null,"",`#/cap/${key}/${nx[0]}/${nx[1]}`);openEpisode(key,nx[0],nx[1])};
+  if(nx[2]==="part") return go2();
+  let n=10; const box=document.createElement("div"); box.id="auto"; box.className="auto";
+  box.innerHTML=`<p>Sigue el ${esc(s.episodes[nx[0]].label)} en <b id="autoN">${n}</b> segundos…</p><button class="btn sig" id="autoGo">▶ Ver ahora</button><button class="btn pguardar" id="autoNo">✋ Quedarme aquí</button>`;
+  $("#frame").after(box); $("#autoGo").onclick=go2; $("#autoNo").onclick=clearAuto;
+  autoT=setInterval(()=>{n--; const el=$("#autoN"); if(el) el.textContent=n; if(n<=0) go2();},1000);
+}
 function setPacts(){const w=data.find(x=>x.id===cur);const on=favs.has(cur);
   $("#pacts").innerHTML=(w.type==="vix"?`<a class="btn vixbig" href="${w.watchUrl}" target="_blank" rel="noopener">▶ Ver en ViX</a>`:`<a class="btn yt" href="${w.watchUrl}" target="_blank" rel="noopener">▶ Abrir en YouTube</a>`)+
    `<button class="btn pguardar ${on?"on":""}" id="pfav">${on?"❤ Guardado":"🤍 Guardar"}</button>`;
   $("#pfav").onclick=()=>{toggleFav(cur);setPacts();app.querySelectorAll(`[data-fav="${cur}"]`).forEach(b=>{b.classList.toggle("on",favs.has(cur));b.textContent=favs.has(cur)?"❤ Guardado":"🤍 Guardar"})}}
-function openPlayer(id){const w=data.find(x=>x.id===id);if(!w){go("#/");return}cur=id;
-  const f=$("#frame");
-  if(w.type==="youtube"){f.style.backgroundImage="";f.innerHTML=`<iframe src="${w.embedUrl}" title="${esc(w.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`}
-  else{f.style.backgroundImage=`url('${w.thumb}')`;f.innerHTML=""}
+function openPlayer(id){const w=data.find(x=>x.id===id);if(!w){go("#/");return}cur=id;curEp=null;
+  const f=$("#frame"); clearAuto();
+  if(w.type==="youtube"){playVideo(w.videoId,w.title,null)}
+  else{destroyYT();f.style.backgroundImage=`url('${w.thumb}')`;f.innerHTML=""}
   $("#ptitle").textContent=w.title;
   $("#pmeta").textContent=[w.show,yearTxt(w),w.type==="youtube"?w.duration:"Completo en ViX",w.note].filter(Boolean).join(" · ");
   $("#psrc").textContent=(w.type==="youtube"?"Si el video no carga, toque “Abrir en YouTube”. ":"Se abre en la página de ViX. ")+"Fuente: "+w.source;
   setPacts(); if(!$("#dlg").open) $("#dlg").showModal();}
-function closeDlg(fromRoute){$("#frame").innerHTML="";cur=null;if($("#dlg").open)$("#dlg").close();}
+function destroyYT(){ if(ytp&&ytp.destroy){try{ytp.destroy()}catch(e){}} ytp=null; }
+function closeDlg(fromRoute){clearAuto();destroyYT();$("#frame").innerHTML="";cur=null;curEp=null;if($("#dlg").open)$("#dlg").close();
+  if(rendered&&rendered.startsWith("serie/")){const s=SER[rendered.split("/")[1]]; if(s){const y=window.scrollY; showSerie(s); window.scrollTo(0,y);}}
+  else if(rendered===""){ const y=window.scrollY; showHome(); window.scrollTo(0,y); }}
 $("#close").onclick=()=>history.back();
 $("#dlg").addEventListener("cancel",e=>{e.preventDefault();history.back()});
 $("#back").onclick=()=>history.back();
